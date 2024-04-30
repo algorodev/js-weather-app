@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 html {
 	box-sizing: border-box;
 }
@@ -16,9 +18,9 @@ html {
 }
 
 body {
-	background:  #212121;
-	color:       #FAFAFA;
-	font-family: 'Roboto', sans-serif;
+	background:  var(--color-background);
+	color:       var(--color-white);
+	font-family: var(--font-primary);
 }
 
 .container {
@@ -51,33 +53,34 @@ body {
 	padding:          10px 6px;
 	background-color: transparent;
 	border:           none;
-	border-bottom:    2px solid #FAFAFA;
-	color:            #212121;
+	border-bottom:    2px solid var(--color-white);
+	color:            var(--color-white);
 	transition:       background 0.3s;
 }
 
 .form > input::placeholder {
-	color: #FAFAFA;
+	color: var(--color-white);
 }
 
 .form > input:hover,
 .form > input:focus {
-	background: #333;
+	background: var(--color-input-background);
+	border-color: var(--color-primary);
 }
 
 .form > .form-button {
 	padding:                    11px 8px;
-	background-color:           #FAFAFA;
+	background-color:           var(--color-white);
 	border:                     none;
-	border-bottom-right-radius: 8px;
-	border-top-right-radius:    8px;
+	border-bottom-right-radius: var(--border-radius);
+	border-top-right-radius:    var(--border-radius);
 	font-weight:                bold;
 	cursor:                     pointer;
 	transition:                 background 0.3s;
 }
 
 .form > .form-button:hover {
-	background-color: #87CEEB;
+	background: var(--color-primary);
 }
 
 .widget-container {
@@ -88,12 +91,12 @@ body {
 
 .weather-info {
 	position:                relative;
-	background:              rgba(255, 255, 255, 0.25);
-	box-shadow:              0 8px 32px 0 rgba(97, 98, 117, 0.37);
+	background:              var(--color-card-background);
+	box-shadow:              0 8px 32px 0 var(--color-shadow);
 	backdrop-filter:         blur(2px);
 	-webkit-backdrop-filter: blur(2px);
-	border-radius:           10px;
-	border:                  1px solid rgba(255, 255, 255, 0.18);
+	border-radius:           var(--border-radius);
+	border:                  1px solid var(--color-border);
 	display:                 flex;
 	align-items:             center;
 	flex-direction:          column;
@@ -112,7 +115,6 @@ body {
 	right:         10px;
 	background:    transparent;
 	border:        none;
-	border-radius: 50%;
 	cursor:        pointer;
 
 	@media (width <= 800px) {
@@ -122,7 +124,7 @@ body {
 
 .weather-info > .delete-button > .fa-trash {
 	font-size: 2rem;
-	color:     #FA4312;
+	color:     var(--color-red);
 }
 
 .weather-info:hover > .delete-button {
