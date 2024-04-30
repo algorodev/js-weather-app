@@ -16,7 +16,219 @@ html {
 }
 
 body {
-	background:  #FAFAFA;
-	color:       #212121;
+	background:  #212121;
+	color:       #FAFAFA;
 	font-family: 'Roboto', sans-serif;
+}
+
+.container {
+	width:   100vw;
+	height:  100vh;
+	padding: 4rem;
+	margin:  auto;
+
+	@media (width <= 800px) {
+		padding: 2rem;
+	}
+}
+
+.box {
+	max-width: 800px;
+	margin:    0 auto 20px;
+
+	@media (width <= 700px) {
+		margin-bottom: 38px;
+	}
+}
+
+.form {
+	display:     flex;
+	align-items: flex-end;
+}
+
+.form > input {
+	flex:             1;
+	padding:          10px 6px;
+	background-color: transparent;
+	border:           none;
+	border-bottom:    2px solid #FAFAFA;
+	color:            #212121;
+	transition:       background 0.3s;
+}
+
+.form > input::placeholder {
+	color: #FAFAFA;
+}
+
+.form > input:hover,
+.form > input:focus {
+	background: #333;
+}
+
+.form > .form-button {
+	padding:                    11px 8px;
+	background-color:           #FAFAFA;
+	border:                     none;
+	border-bottom-right-radius: 8px;
+	border-top-right-radius:    8px;
+	font-weight:                bold;
+	cursor:                     pointer;
+	transition:                 background 0.3s;
+}
+
+.form > .form-button:hover {
+	background-color: #87CEEB;
+}
+
+.widget-container {
+	display:               grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap:                   30px;
+}
+
+.weather-info {
+	position:                relative;
+	background:              rgba(255, 255, 255, 0.25);
+	box-shadow:              0 8px 32px 0 rgba(97, 98, 117, 0.37);
+	backdrop-filter:         blur(2px);
+	-webkit-backdrop-filter: blur(2px);
+	border-radius:           10px;
+	border:                  1px solid rgba(255, 255, 255, 0.18);
+	display:                 flex;
+	align-items:             center;
+	flex-direction:          column;
+	padding:                 20px;
+	transition:              transform 0.3s;
+}
+
+.weather-info:hover {
+	transform: scale(1.05);
+}
+
+.weather-info > .delete-button {
+	display:       none;
+	position:      absolute;
+	top:           10px;
+	right:         10px;
+	background:    transparent;
+	border:        none;
+	border-radius: 50%;
+	cursor:        pointer;
+
+	@media (width <= 800px) {
+		display: block;
+	}
+}
+
+.weather-info > .delete-button > .fa-trash {
+	font-size: 2rem;
+	color:     #FA4312;
+}
+
+.weather-info:hover > .delete-button {
+	display: block;
+}
+
+.weather-info > .current {
+	display:        flex;
+	flex-direction: column;
+	align-items:    center;
+	font-weight:    bold;
+	text-align:     center;
+
+	@media (width <= 800px) {
+		margin-bottom: 5px;
+	}
+}
+
+.weather-info > .current > .title > .city {
+	margin: 0;
+
+	@media (width <= 800px) {
+		font-size: 1.5rem;
+	}
+}
+
+.weather-info > .current > .info {
+	display:     flex;
+	align-items: center;
+
+	@media (width <= 600px) {
+		flex-direction: column;
+	}
+}
+
+.weather-info > .current > .info > img {
+	width:  125px;
+	height: 125px;
+
+	@media (width <= 800px) {
+		width:  90px;
+		height: 90px;
+	}
+}
+
+.weather-info > .current > .info > .details {
+	text-align: left;
+}
+
+.weather-info > .current > .info > .details > .temp,
+.weather-info > .current > .info > .details > .wind,
+.weather-info > .current > .info > .details > .humidity {
+	font-size:     1rem;
+	margin-bottom: 5px;
+
+	@media (width <= 800px) {
+		font-size: 0.8rem;
+	}
+}
+
+.weather-info > .next-days {
+	display:         flex;
+	justify-content: space-around;
+	flex:            1;
+}
+
+.weather-info > .next-days > .day {
+	display:        flex;
+	flex-direction: column;
+	align-items:    center;
+	gap:            5px;
+	padding:        0 10px;
+	text-align:     center;
+
+	@media (width <= 800px) {
+		padding: 5px;
+	}
+
+	@media (width <= 600px) {
+		padding: 2px;
+	}
+}
+
+.weather-info > .next-days > .day > .date {
+	font-size: 1.2rem;
+	margin:    0;
+
+	@media (width <= 800px) {
+		font-size: 0.8rem;
+	}
+}
+
+.weather-info > .next-days > .day > img {
+	width:  36px;
+	height: 36px;
+
+	@media (width <= 800px) {
+		width:  28px;
+		height: 28px;
+	}
+}
+
+.weather-info > .next-days > .day > .temp {
+	font-size: 0.8rem;
+
+	@media (width <= 800px) {
+		font-size: 0.6rem;
+	}
 }
