@@ -5,7 +5,18 @@ let weatherList = []
 let lastId = 0
 let lastTimestamp = Date.now()
 
+document.addEventListener('DOMContentLoaded', () => loadWeatherList())
+
 searchFormElement.addEventListener('submit', (event) => handleFormSubmit(event))
+
+const loadWeatherList = () => {
+	const localData = getLocalData()
+
+	if (localData.length) {
+		weatherList = localData
+		refreshWeatherList()
+	}
+}
 
 const handleFormSubmit = (event) => {
 	event.preventDefault()
@@ -22,8 +33,8 @@ const handleFormSubmit = (event) => {
 const addCity = async (city) => {
 	const { current, forecast, location } = await fetchWeatherData(city)
 	const weatherItem = createWeatherItem(current, forecast, location)
-	console.log(weatherItem)
 	weatherList.push(weatherItem)
+	saveLocalData()
 	refreshWeatherList()
 }
 
@@ -116,3 +127,7 @@ const createWeatherWidget = (weatherData) => {
 const clearWeatherList = () => {
 	widgetListElement.innerHTML = ''
 }
+
+const saveLocalData = () => localStorage.setItem('weatherList', JSON.stringify(weatherList))
+
+const getLocalData = () => JSON.parse(localStorage.getItem('weatherList')) || []
