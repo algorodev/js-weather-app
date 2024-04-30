@@ -65,7 +65,7 @@ const generateItemId = () => {
 		lastTimestamp = timestamp
 	}
 
-	return `todo-${timestamp}-${lastId}`
+	return `widget-${timestamp}-${lastId}`
 }
 
 const fetchWeatherData = async (cityName) => {
@@ -96,7 +96,7 @@ const createWeatherWidget = (weatherData) => {
 	widgetElement.classList.add('weather-info')
 	widgetElement.id = weatherData.id
 	widgetElement.innerHTML = `
-		<button id="delete-button-01" type="button" class="delete-button"><i class="fa fa-trash"></i></button>
+		<button id="delete-button-${weatherData.id}" type="button" class="delete-button"><i class="fa fa-trash"></i></button>
 		<div class="current">
 			<div class="title">
 				<h2 class="city">${weatherData.city}</h2>
@@ -121,6 +121,9 @@ const createWeatherWidget = (weatherData) => {
 			</div>
 	`
 
+	widgetElement.querySelector(`#delete-button-${weatherData.id}`)
+		.addEventListener('click', () => deleteWeatherItem(weatherData.id))
+
 	return widgetElement
 }
 
@@ -131,3 +134,9 @@ const clearWeatherList = () => {
 const saveLocalData = () => localStorage.setItem('weatherList', JSON.stringify(weatherList))
 
 const getLocalData = () => JSON.parse(localStorage.getItem('weatherList')) || []
+
+const deleteWeatherItem = (id) => {
+	weatherList = weatherList.filter((weather) => weather.id !== id)
+	saveLocalData()
+	refreshWeatherList()
+}
