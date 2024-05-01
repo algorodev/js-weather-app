@@ -32,8 +32,7 @@ The Weather App is a straightforward, user-friendly application designed to help
 information efficiently. Built with HTML5, CSS3, and JavaScript, this app offers a sleek, responsive design that
 operates smoothly on both desktop and mobile browsers. Users can quickly view current weather conditions, forecasts, and
 temperature readings for multiple locations. The application provides live updates and detailed weather reports,
-including humidity, wind speed, and atmospheric pressure, all stored and updated directly in the browser for easy access
-and reference.
+including humidity, wind speed, all stored and updated directly in the browser for easy access and reference.
 
 ## Stack
 
@@ -45,11 +44,11 @@ and reference.
 
 - **Forecast Information**: Displays detailed weather forecasts for upcoming days, helping users plan ahead with weather
   predictions including temperature highs and lows, chance of precipitation, and other relevant details.
-- **Location Search**: Users can search for weather information by city. The application should support multiple location
-  searches and allow users to quickly switch between them.
+- **Location Search**: Users can search for weather information by city. The application should support multiple
+  location widgets.
 - **Customizable Settings**: Allows users to set preferences for units of measurement (e.g., Celsius or Fahrenheit).
-- **Persistence**: Utilizes local storage or session storage to remember user preferences, recently searched locations, and
-  other customizable settings, even after the browser is closed.
+- **Persistence**: Utilizes local storage or session storage to remember user preferences, recently searched locations,
+  and other customizable settings, even after the browser is closed.
 
 ## Setup
 
@@ -72,11 +71,14 @@ modern web browser to start using the app immediately.
 
 ## Usage
 
-1. **Searching for a Location**: Type the name of the city or zip code into the search bar and press enter or click the
-   search icon. The app will fetch and display the current weather information for that location. 
-2. **Checking the Forecast**: Below or beside the current weather display, you can find the weather forecast for the
-   upcoming days. This typically includes highs and lows for temperature and expected weather conditions. 
-3. **Customizing Settings**: Use the settings option to switch between temperature units (Celsius or Fahrenheit).
+1. **Searching for a Location**: Type the name of the city into the search bar and press `Enter` or click the
+   "Submit" button. The app will fetch and display the current weather information for that location.
+2. **Deleting Weather Widget**: To remove a weather widget, click the trash icon button located in the top right corner
+   of the widget.
+3. **Checking the Forecast**: Below or beside the current weather display, you can find the weather forecast for the
+   upcoming days. This typically includes highs and lows for temperature and expected weather conditions.
+4. **Customizing Settings**: Use the converter button positioned in the right bottom to switch between temperature
+   units (Celsius or Fahrenheit).
 
 ## License
 

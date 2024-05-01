@@ -1,0 +1,14 @@
+:root {
+	--color-primary:          #FACC15FF;
+	--color-white:            #FAFAFA;
+	--color-black:            #212121;
+	--color-background:       #3b2e5a;
+	--color-input-background: #333;
+	--color-card-background:  rgba(255, 255, 255, 0.25);
+	--color-shadow:           rgba(97, 98, 117, 0.37);
+	--color-shadow-hover:     0 0 20px rgba(0, 0, 0, 0.2);
+	--color-border:           rgba(255, 255, 255, 0.18);
+	--color-red:              #FA4312;
+	--border-radius:          8px;
+	--font-primary:           'Roboto';
+}
