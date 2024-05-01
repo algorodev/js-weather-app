@@ -253,3 +253,35 @@ body {
 	transform:   translateY(-5px);
 	font-weight: bold;
 }
+
+.alert {
+	display:          none;
+	position:         fixed;
+	top:              20px;
+	right:            0;
+	z-index:          1000;
+	padding:          20px;
+	background-color: var(--color-red);
+	color:            white;
+
+	@media (width <= 800px) {
+		width: 100%;
+	}
+}
+
+.close-button {
+	margin-left: 15px;
+	background:  transparent;
+	border:      none;
+	color:       white;
+	font-weight: bold;
+	float:       right;
+	font-size:   22px;
+	line-height: 20px;
+	cursor:      pointer;
+	transition:  0.3s;
+}
+
+.close-button:hover {
+	color: black;
+}

@@ -1,6 +1,7 @@
 const searchFormElement = document.getElementById('search-form')
 const widgetListElement = document.getElementById('widget-list')
 const gradeButtonElement = document.getElementById('grade-button')
+const alertElement = document.getElementById('alert')
 const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 let weatherList = []
 let lastId = 0
@@ -92,7 +93,11 @@ const fetchWeatherData = async (cityName) => {
 			},
 		})
 
-	return await response.json()
+	if (response.status >= 400) {
+		alertElement.style.display = 'block'
+	} else {
+		return await response.json()
+	}
 }
 
 const refreshWeatherList = () => {
