@@ -250,6 +250,6 @@ body {
 }
 
 .grade-button:hover {
-	transform: translateY(-5px);
+	transform:   translateY(-5px);
 	font-weight: bold;
 }
