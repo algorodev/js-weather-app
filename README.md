@@ -32,8 +32,7 @@ The Weather App is a straightforward, user-friendly application designed to help
 information efficiently. Built with HTML5, CSS3, and JavaScript, this app offers a sleek, responsive design that
 operates smoothly on both desktop and mobile browsers. Users can quickly view current weather conditions, forecasts, and
 temperature readings for multiple locations. The application provides live updates and detailed weather reports,
-including humidity, wind speed, and atmospheric pressure, all stored and updated directly in the browser for easy access
-and reference.
+including humidity, wind speed, all stored and updated directly in the browser for easy access and reference.
 
 ## Stack
 
