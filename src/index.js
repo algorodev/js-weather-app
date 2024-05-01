@@ -1,13 +1,17 @@
 const searchFormElement = document.getElementById('search-form')
 const widgetListElement = document.getElementById('widget-list')
+const gradeButtonElement = document.getElementById('grade-button')
 const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 let weatherList = []
 let lastId = 0
 let lastTimestamp = Date.now()
+let grade = 'C'
 
 document.addEventListener('DOMContentLoaded', () => loadWeatherList())
 
 searchFormElement.addEventListener('submit', (event) => handleFormSubmit(event))
+
+gradeButtonElement.addEventListener('click', () => handleGradeChange())
 
 const loadWeatherList = () => {
 	const localData = getLocalData()
@@ -33,6 +37,12 @@ const handleFormSubmit = (event) => {
 	}
 }
 
+const handleGradeChange = () => {
+	grade = grade === 'C' ? 'F' : 'C'
+	gradeButtonElement.textContent = grade
+	refreshWeatherList()
+}
+
 const addCity = async (city) => {
 	const { current, forecast, location } = await fetchWeatherData(city)
 	const weatherItem = createWeatherItem(current, forecast, location)
@@ -46,14 +56,14 @@ const createWeatherItem = (current, forecast, location) => ({
 	city: location.name,
 	info: {
 		icon: current.condition.icon,
-		minTemp: forecast.forecastday[0].day.mintemp_c,
-		maxTemp: forecast.forecastday[0].day.maxtemp_c,
+		minTemp: Math.floor(forecast.forecastday[0].day.mintemp_c),
+		maxTemp: Math.floor(forecast.forecastday[0].day.maxtemp_c),
 		wind: current.wind_kph,
 		humidity: current.humidity,
 	},
 	nextDays: forecast.forecastday.slice(1).map((day) => ({
 		day: weekDays[new Date(day.date).getDay()],
-		temperature: day.day.avgtemp_c,
+		temperature: Math.floor(day.day.avgtemp_c),
 		icon: day.day.condition.icon,
 	})),
 })
@@ -107,7 +117,7 @@ const createWeatherWidget = (weatherData) => {
 			<div class="info">
 				<img src="${weatherData.info.icon}" alt="icon">
 				<div class="details">
-					<p class="temp">H:${weatherData.info.maxTemp}º L:${weatherData.info.minTemp}º</p>
+					<p class="temp">H:${grade === 'C' ? weatherData.info.maxTemp : convertToFahrenheit(weatherData.info.maxTemp)}º${grade} L:${grade === 'C' ? weatherData.info.minTemp : convertToFahrenheit(weatherData.info.minTemp)}º${grade}</p>
 					<p class="wind">Wind: ${weatherData.info.wind}km/h</p>
 					<p class="humidity">Humidity: ${weatherData.info.humidity}%</p>
 				</div>
@@ -118,7 +128,7 @@ const createWeatherWidget = (weatherData) => {
 					<div class="day">
 						<h3 class="date">${day}</h3>
 						<img src="${icon}" alt="icon">
-						<p class="temp">${temperature}º</p>
+						<p class="temp">${grade === 'C' ? temperature : convertToFahrenheit(temperature)}º${grade}</p>
 					</div>
 				`).join('')}
 			</div>
@@ -151,17 +161,19 @@ const updateWeatherWidget = async (id) => {
 		const { current, forecast } = await fetchWeatherData(item.city)
 		item['info'] = {
 			icon: current.condition.icon,
-			minTemp: forecast.forecastday[0].day.mintemp_c,
-			maxTemp: forecast.forecastday[0].day.maxtemp_c,
+			minTemp: Math.floor(forecast.forecastday[0].day.mintemp_c),
+			maxTemp: Math.floor(forecast.forecastday[0].day.maxtemp_c),
 			wind: current.wind_kph,
 			humidity: current.humidity,
 		}
 		item['nextDays'] = forecast.forecastday.slice(1).map((day) => ({
 			day: weekDays[new Date(day.date).getDay()],
-			temperature: day.day.avgtemp_c,
+			temperature: Math.floor(day.day.avgtemp_c),
 			icon: day.day.condition.icon,
 		}))
 		saveLocalData()
 		refreshWeatherList()
 	}
 }
+
+const convertToFahrenheit = (celsius) => Math.floor((celsius * 9 / 5) + 32)

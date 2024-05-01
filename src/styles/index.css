@@ -20,7 +20,8 @@ html {
 body {
 	background:  var(--color-background);
 	color:       var(--color-white);
-	font-family: var(--font-primary);
+	font-family: var(--font-primary), sans-serif;
+	position:    relative;
 }
 
 .container {
@@ -64,7 +65,7 @@ body {
 
 .form > input:hover,
 .form > input:focus {
-	background: var(--color-input-background);
+	background:   var(--color-input-background);
 	border-color: var(--color-primary);
 }
 
@@ -109,13 +110,13 @@ body {
 }
 
 .weather-info > .delete-button {
-	display:       none;
-	position:      absolute;
-	top:           10px;
-	right:         10px;
-	background:    transparent;
-	border:        none;
-	cursor:        pointer;
+	display:    none;
+	position:   absolute;
+	top:        10px;
+	right:      10px;
+	background: transparent;
+	border:     none;
+	cursor:     pointer;
 
 	@media (width <= 800px) {
 		display: block;
@@ -233,4 +234,22 @@ body {
 	@media (width <= 800px) {
 		font-size: 0.6rem;
 	}
+}
+
+.grade-button {
+	width:            40px;
+	height:           40px;
+	position:         fixed;
+	bottom:           20px;
+	right:            20px;
+	background-color: var(--color-primary);
+	border:           none;
+	border-radius:    var(--border-radius);
+	cursor:           pointer;
+	transition:       0.3s;
+}
+
+.grade-button:hover {
+	transform: translateY(-5px);
+	font-weight: bold;
 }
