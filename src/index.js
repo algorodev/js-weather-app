@@ -1,6 +1,6 @@
 const searchFormElement = document.getElementById('search-form')
 const widgetListElement = document.getElementById('widget-list')
-const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 let weatherList = []
 let lastId = 0
 let lastTimestamp = Date.now()
@@ -14,6 +14,9 @@ const loadWeatherList = () => {
 
 	if (localData.length) {
 		weatherList = localData
+		weatherList.forEach((weatherData) => {
+			updateWeatherWidget(weatherData.id)
+		})
 		refreshWeatherList()
 	}
 }
@@ -139,4 +142,26 @@ const deleteWeatherItem = (id) => {
 	weatherList = weatherList.filter((weather) => weather.id !== id)
 	saveLocalData()
 	refreshWeatherList()
+}
+
+const updateWeatherWidget = async (id) => {
+	const item = weatherList.find((weather) => weather.id === id)
+
+	if (item) {
+		const { current, forecast } = await fetchWeatherData(item.city)
+		item['info'] = {
+			icon: current.condition.icon,
+			minTemp: forecast.forecastday[0].day.mintemp_c,
+			maxTemp: forecast.forecastday[0].day.maxtemp_c,
+			wind: current.wind_kph,
+			humidity: current.humidity,
+		}
+		item['nextDays'] = forecast.forecastday.slice(1).map((day) => ({
+			day: weekDays[new Date(day.date).getDay()],
+			temperature: day.day.avgtemp_c,
+			icon: day.day.condition.icon,
+		}))
+		saveLocalData()
+		refreshWeatherList()
+	}
 }
