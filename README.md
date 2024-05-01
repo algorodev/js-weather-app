@@ -1,5 +1,6 @@
 <div align="center">
     <h2>JS Weather App</h2>
+    <p>Try it on <a href="https://js-weather-app-algorodev.netlify.app/">demo</a></p>
 </div>
 <div align="center">
 
